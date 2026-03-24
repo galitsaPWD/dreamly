@@ -1,0 +1,73 @@
+﻿Starting project at C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly
+[NativeWind Index] output path (normalized): C:/Users/Dell/OneDrive/Desktop/Projects/portfolio/dreamly/node_modules/.cache/nativewind/global.css
+Starting Metro Bundler
+
+warning: Bundler cache is empty, rebuilding (this may take a minute)
+Waiting on http://localhost:8081
+Logs for your project will appear below.
+node.exe : 
+(node:26556) 
+[DEP0190] 
+DeprecationWarning: 
+Passing args to a 
+child process with 
+shell option true can 
+lead to security 
+vulnerabilities, as 
+the arguments are not 
+escaped, only 
+concatenated.
+At line:1 char:1
++ & "C:\Program Files\
+nodejs/node.exe" "C:\U
+sers\Dell\AppData\Roam
+ing\n ...
++ ~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~
+    + CategoryInfo    
+          : NotSpeci  
+  fied: ((node:2655   
+ 6) [D...y concate    
+nated.:String) []    
+, RemoteException
+    + FullyQualifiedE 
+   rrorId : NativeCo  
+  mmandError
+ 
+(Use `node 
+--trace-deprecation 
+...` to show where 
+the warning was 
+created)
+tailwindcss(web) rebuilding... Web node_modules\expo-router\entry.js ΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæ  0.0% (0/1)
+╬╗ node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js ΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæ  0.0% (0/1)
+done
+Web node_modules\expo-router\entry.js ΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæ  0.0% (0/1)
+╬╗ node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js ΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæΓûæ  0.0% (0/1)
+╬╗ Bundling failed 7348ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+Web Bundling failed 7391ms node_modules\expo-router\entry.js (1 module)
+
+Metro error: node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js: (0 , common_1.getResolvedPaths) is not a function
+
+Call Stack
+  [nodejs.internal.kHybridDispatch] (node:internal\event_target)
+Web Bundling failed 347ms node_modules\expo-router\_error.js (1 module)
+ ERROR  TypeError: (0 , common_1.getResolvedPaths) is not a function
+    at Object.transform (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\nativewind\dist\metro\transformer.js:13:96)
+    at Object.transform (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\@expo\metro-config\build\transform-worker\supervising-transform-worker.js:94:25)
+    at transformFile (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\metro\src\DeltaBundler\Worker.flow.js:67:36)
+    at Object.transform (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\metro\src\DeltaBundler\Worker.flow.js:42:10)
+    at execFunction (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\jest-worker\build\workers\threadChild.js:167:17)
+    at execHelper (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\jest-worker\build\workers\threadChild.js:155:5)
+    at execMethod (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\jest-worker\build\workers\threadChild.js:158:5)
+    at MessagePort.messageListener (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\jest-worker\build\workers\threadChild.js:52:7)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:845:20)
+Web Bundling failed 154ms node_modules\expo-router\entry.js (1 module)
+╬╗ Bundling failed 152ms node_modules\expo\node_modules\@expo\cli\node_modules\@expo\router-server\node\render.js (1 module)
+
+Metro error: node_modules\expo-router\entry.js: (0 , common_1.getResolvedPaths) is not a function
+
+Call Stack
+  [nodejs.internal.kHybridDispatch] (node:internal\event_target)
