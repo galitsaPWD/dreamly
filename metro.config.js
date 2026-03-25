@@ -10,13 +10,17 @@ const finalConfig = withNativeWind(config, {
   input: "./global.css",
 });
 
-// Normalize only essential paths for Windows
+// Normalize paths safely (handles Windows/Linux differences)
 if (finalConfig.transformerPath) {
   finalConfig.transformerPath = finalConfig.transformerPath.replace(/\\/g, "/");
 }
-if (finalConfig.transformer.nativewind) {
-  finalConfig.transformer.nativewind.input = finalConfig.transformer.nativewind.input.replace(/\\/g, "/");
-  finalConfig.transformer.nativewind.output = finalConfig.transformer.nativewind.output.replace(/\\/g, "/");
+if (finalConfig.transformer?.nativewind) {
+  if (finalConfig.transformer.nativewind.input) {
+    finalConfig.transformer.nativewind.input = finalConfig.transformer.nativewind.input.replace(/\\/g, "/");
+  }
+  if (finalConfig.transformer.nativewind.output) {
+    finalConfig.transformer.nativewind.output = finalConfig.transformer.nativewind.output.replace(/\\/g, "/");
+  }
 }
 
 module.exports = finalConfig;
