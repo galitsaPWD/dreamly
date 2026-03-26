@@ -25,9 +25,9 @@ export const generateStory = async (request: StoryRequest): Promise<StoryResult>
 
   // Map length to word counts
   const lengths = {
-    short: { words: '350-500', time: '2 minutes' },
-    medium: { words: '800-1000', time: '5 minutes' },
-    long: { words: '1200-1500', time: '10 minutes' },
+    short: { words: '500-700', time: '4 minutes' },
+    medium: { words: '1200-1500', time: '8 minutes' },
+    long: { words: '1800-2600', time: '15 minutes' },
   };
 
   const selectedLength = request.length || 'medium';
@@ -54,29 +54,20 @@ export const generateStory = async (request: StoryRequest): Promise<StoryResult>
     Main Character: ${heroInstruction}
     
     Story Requirements:
-    1. Duration: ${time} read (Strictly ${words} words).
+    1. Duration: ${time} read (Strictly ${words} words). Be descriptive, expansive, and immersive.
     2. OPENING: Do NOT use "Once upon a time" or similar generic phrases. Start with a unique, atmospheric hook that immediately pulls them into the "${style}" world.
     3. THEME: The setting, characters, and jargon must perfectly match the "${style}" theme. 
-       - Stay strictly within the theme. Do NOT mix in elements from other genres unless the user explicitly requested them.
-    4. PERSONALIZATION: Integrate the child's interests (${request.interests?.join(', ')}) naturally into the environment or as part of the plot.
-       - STRICT RULE: NEVER address the reader directly. Do not say "dear listener", do not say "imagine", and do not talk specifically to ${request.childName} about listening. Do NOT say "This story is for you" or similar. Keep the story strictly in-universe as a pure narrative.
-    5. STRUCTURE: 4-6 clear paragraphs with a strong narrative arc.
+    4. PERSONALIZATION: Integrate the child's interests (${request.interests?.join(', ') || 'Magic and adventure'}) naturally into the environment or as part of the plot.
+       - STRICT RULE: NEVER address the reader directly. Do not say "dear listener", do not say "imagine", and do not talk specifically to ${request.childName} about listening. Keep the story strictly in-universe as a pure narrative.
+    5. STRUCTURE: For "long" stories, divide the narrative into 3 distinct scenes or chapters to ensure depth and accurate length.
     6. TONE: Warm, calming, and age-appropriate (${request.age} years old).
     7. ENDING: A gentle transition from the ${style} adventure to a state of total peace.
     8. TITLE RULES: 
-       - Avoid generic "Name and the Topic" patterns (e.g., NO "Liam and the Space Adventure").
-       - Be poetic, surprising, and evocative (e.g., "The Boy Who Painted the Wind", "Where the Silver Moon Hides", "The Midnight Cookie Caper").
-       - Use metaphors or descriptive imagery related to the theme.
-       - Each title must feel unique and non-repetitive in structure. 
-       - DO NOT use the same structure for every story (e.g. "X of the Y"). Mix it up!
-    9. FORBIDDEN PATTERNS (CRITICAL):
-       - Do NOT start with "Once upon a time", "In a village...", or "Long ago".
-       - Do NOT use the words "adventure", "discovery", "mystical", or "magical" in the title.
-       - Do NOT use "Whisper", "Whispers", "Whispering", "Wood", "Woods", "Glen", "Secret", "Hidden", "Shadow" in the title unless it is remarkably unique.
-       - AVOID alliterative titles (e.g., "Golden Glen").
-       - Do NOT use repetitive sentence structures. Use varied, lyrical prose.
+       - Avoid generic patterns. Be poetic, surprising, and evocative (e.g., "The Boy Who Painted the Wind", "Where the Silver Moon Hides").
+       - Each title must feel like a unique masterpiece. 
+    9. FORBIDDEN PATTERNS: Do NOT start with "Once upon a time", "In a village...", or "Long ago". Do NOT use the words "adventure", "discovery", "mystical", or "magical" in the title.
     10. SENSORY OPENING: Start immediately with a specific sensory detail (a sound, a cool breeze, a shimmering light) unique to this story.
-    11. DIVERSITY: Imagine each story is written by a different famous children's author. Use varied vocabulary and sentence lengths.
+    11. DIVERSITY: Use varied, lyrical prose and diverse sentence structures. Avoid repetitive paragraph patterns.
 
     Respond in this JSON format ONLY:
     {
@@ -96,8 +87,8 @@ export const generateStory = async (request: StoryRequest): Promise<StoryResult>
       body: JSON.stringify({
         model: 'llama-3.3-70b-versatile',
         messages: [{ role: 'user', content: prompt }],
-        temperature: 0.88,
-        max_tokens: 2000,
+        temperature: 0.8,
+        max_tokens: 6000,
         response_format: { type: 'json_object' }
       }),
     });

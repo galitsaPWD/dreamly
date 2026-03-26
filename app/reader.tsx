@@ -25,8 +25,8 @@ const AMBIENT_SOUNDS: Record<string, any> = {
 // Estimate reading time for text at given speech rate
 const estimateReadingTimeMs = (text: string, rate: number): number => {
   const wordCount = text.split(/\s+/).filter(Boolean).length;
-  // Average TTS speed is ~150 words/min at rate 1.0
-  const wordsPerMinute = 150 * rate;
+  // Average TTS speed is ~185 words/min at rate 1.0 (calibrated for natural voices)
+  const wordsPerMinute = 185 * rate;
   return (wordCount / wordsPerMinute) * 60 * 1000;
 };
 
