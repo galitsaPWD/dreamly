@@ -50,7 +50,7 @@
     "typescript": "~5.3.3"
   },
   "overrides": {
-    "react-native-worklets": "0.4.0"
+    "react-native-worklets": "~0.4.0"
   },
   "private": true
 }
