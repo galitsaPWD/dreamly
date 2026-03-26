@@ -13,7 +13,8 @@
       "backgroundColor": "#09090B"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nicoconuty.dreamly"
     },
     "android": {
       "adaptiveIcon": {
