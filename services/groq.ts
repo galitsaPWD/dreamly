@@ -23,11 +23,11 @@ export const generateStory = async (request: StoryRequest): Promise<StoryResult>
     throw new Error('Groq API key is missing. Please add EXPO_PUBLIC_GROQ_API_KEY to your .env file.');
   }
 
-  // Map length to word counts
+  // Map length to word counts (Aggressive targets to force AI depth)
   const lengths = {
-    short: { words: '500-700', time: '4 minutes' },
-    medium: { words: '1200-1500', time: '8 minutes' },
-    long: { words: '1800-2600', time: '15 minutes' },
+    short: { words: '700-900', time: '5 minutes' },
+    medium: { words: '1500-1800', time: '10 minutes' },
+    long: { words: '3000-3500', time: '20 minutes' },
   };
 
   const selectedLength = request.length || 'medium';
@@ -54,20 +54,20 @@ export const generateStory = async (request: StoryRequest): Promise<StoryResult>
     Main Character: ${heroInstruction}
     
     Story Requirements:
-    1. Duration: ${time} read (Strictly ${words} words). Be descriptive, expansive, and immersive.
-    2. OPENING: Do NOT use "Once upon a time" or similar generic phrases. Start with a unique, atmospheric hook that immediately pulls them into the "${style}" world.
-    3. THEME: The setting, characters, and jargon must perfectly match the "${style}" theme. 
-    4. PERSONALIZATION: Integrate the child's interests (${request.interests?.join(', ') || 'Magic and adventure'}) naturally into the environment or as part of the plot.
-       - STRICT RULE: NEVER address the reader directly. Do not say "dear listener", do not say "imagine", and do not talk specifically to ${request.childName} about listening. Keep the story strictly in-universe as a pure narrative.
-    5. STRUCTURE: For "long" stories, divide the narrative into 3 distinct scenes or chapters to ensure depth and accurate length.
-    6. TONE: Warm, calming, and age-appropriate (${request.age} years old).
-    7. ENDING: A gentle transition from the ${style} adventure to a state of total peace.
-    8. TITLE RULES: 
-       - Avoid generic patterns. Be poetic, surprising, and evocative (e.g., "The Boy Who Painted the Wind", "Where the Silver Moon Hides").
-       - Each title must feel like a unique masterpiece. 
-    9. FORBIDDEN PATTERNS: Do NOT start with "Once upon a time", "In a village...", or "Long ago". Do NOT use the words "adventure", "discovery", "mystical", or "magical" in the title.
-    10. SENSORY OPENING: Start immediately with a specific sensory detail (a sound, a cool breeze, a shimmering light) unique to this story.
-    11. DIVERSITY: Use varied, lyrical prose and diverse sentence structures. Avoid repetitive paragraph patterns.
+    1. EXTREME LENGTH: This is a 10-20 minute bedtime experience. You MUST write a very long, detailed narrative.
+       - Target Word Count: At least ${words} words. 
+       - Failure to provide excessive detail will result in a failed experience. 
+    2. STRUCTURE: 
+       - For "long" stories: You MUST write exactly 15-20 long, descriptive paragraphs. Divide the story into 5 distinct Acts (Introduction, Rising Action, The Calm, The Magic, The Peaceful Slumber).
+       - For "medium" stories: Write 8-10 long paragraphs.
+    3. STYLE: Use a "slow-burn" narrative style. Describe every sensory detail—the way the air feels, the subtle sounds of nature, the shifting colors of the light.
+    4. OPENING: Start with a specific sensory detail. No cliches.
+    5. THEME: Stay 100% within the "${style}" theme.
+    6. PERSONALIZATION: Weave in ${request.interests?.join(', ')} deeply into the world.
+    7. TONE: Lyrical, calming, and hypnotic.
+    8. ENDING: A very slow, 3-paragraph descent into total peace and sleep.
+    9. RULES: Never address the child directly. No markdown.
+    10. TITLE: A unique masterpiece title. Avoid patterns.
 
     Respond in this JSON format ONLY:
     {
