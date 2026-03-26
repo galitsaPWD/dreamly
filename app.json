@@ -13,7 +13,8 @@
       "backgroundColor": "#09090B"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "newArchEnabled": true
     },
     "android": {
       "adaptiveIcon": {
@@ -25,7 +26,8 @@
       "permissions": [
         "android.permission.RECORD_AUDIO"
       ],
-      "package": "com.nicoconuty.dreamly"
+      "package": "com.nicoconuty.dreamly",
+      "newArchEnabled": true
     },
     "web": {
       "bundler": "metro",
