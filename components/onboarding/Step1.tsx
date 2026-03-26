@@ -29,7 +29,7 @@ export default function Step1({ onNext }: Step1Props) {
         <TouchableOpacity 
           onPress={onNext}
           activeOpacity={0.8}
-          className="bg-sky-500 dark:bg-white w-full py-5 rounded-[24px] active:scale-95 transition-all duration-200"
+          className="bg-sky-500 dark:bg-white w-full py-5 rounded-[24px] active:scale-95 transition-all duration-200 overflow-hidden"
         >
           <Text className="text-white dark:text-zinc-950 text-xl font-bold text-center">Let's begin</Text>
         </TouchableOpacity>

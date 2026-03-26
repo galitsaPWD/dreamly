@@ -16,7 +16,7 @@ export default function Step4({ profile, onComplete, onBack, completing }: Step4
   return (
     <View className="flex-1" style={{ flex: 1 }}>
       <View className="flex-1 justify-center items-center w-full">
-        <View className="mb-10 w-32 h-32 bg-white dark:bg-zinc-900/50 rounded-[48px] items-center justify-center border border-sky-100 dark:border-zinc-800/80">
+        <View className="mb-10 w-32 h-32 bg-white dark:bg-zinc-900/50 rounded-[48px] items-center justify-center border border-sky-100 dark:border-zinc-800/80 overflow-hidden">
           <Ionicons 
             name={(profile.emoji || 'moon-outline') as any} 
             size={72} 
@@ -34,7 +34,7 @@ export default function Step4({ profile, onComplete, onBack, completing }: Step4
           onPress={onComplete}
           activeOpacity={0.8}
           disabled={completing}
-          className="w-full bg-sky-500 dark:bg-white py-5 rounded-[24px] active:scale-95 transition-all duration-200 justify-center items-center"
+          className="w-full bg-sky-500 dark:bg-white py-5 rounded-[24px] active:scale-95 transition-all duration-200 justify-center items-center overflow-hidden"
         >
           {completing ? (
             <ActivityIndicator color={colorScheme === 'dark' ? '#000' : '#FFF'} />

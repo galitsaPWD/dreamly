@@ -404,16 +404,18 @@ export default function ReaderScreen() {
     const startIndex = Math.floor(progress * totalWords);
     const remainingText = words.slice(startIndex).join(' ');
 
+    console.log('[Reader] Starting System TTS Fallback from ms:', pausedElapsedRef.current);
     Speech.speak(remainingText, {
       rate: speed,
       voice: voiceId,
       onStart: () => {
+        console.log('[Reader] System TTS successfully started');
         const startTime = Date.now() - pausedElapsedRef.current;
         timerRef.current = setInterval(() => {
           const now = Date.now();
           const currentElapsed = now - startTime;
           setElapsedMs(currentElapsed);
-          if (currentElapsed >= totalEstimatedMs) {
+          if (currentElapsed >= totalDurationMs) {
             if (timerRef.current) clearInterval(timerRef.current);
             setIsSpeaking(false);
             stopAmbientSound();
@@ -421,11 +423,13 @@ export default function ReaderScreen() {
         }, 100);
       },
       onDone: () => {
+        console.log('[Reader] System TTS completed');
         setIsSpeaking(false);
         if (timerRef.current) clearInterval(timerRef.current);
         stopAmbientSound();
       },
-      onError: () => {
+      onError: (err) => {
+        console.error('[Reader] System TTS Error:', err);
         setIsSpeaking(false);
         if (timerRef.current) clearInterval(timerRef.current);
         stopAmbientSound();
@@ -450,7 +454,7 @@ export default function ReaderScreen() {
         console.log(`[Reader] Attempting ElevenLabs playback: ${story.audioUri.substring(0, 60)}...`);
         try {
           if (!narrationSoundRef.current) {
-            console.log('[Reader] Creating new Audio.Sound instance...');
+            console.log('[Reader] Creating new Audio.Sound instance for:', story.audioUri);
             const { sound } = await Audio.Sound.createAsync(
               { uri: story.audioUri },
               { 
@@ -458,18 +462,25 @@ export default function ReaderScreen() {
                 rate: speed, 
                 shouldCorrectPitch: true,
                 progressUpdateIntervalMillis: 100
+              },
+              (status) => {
+                if (!status.isLoaded) {
+                  if ((status as any).error) console.warn('[Reader] Audio status error:', (status as any).error);
+                  return;
+                }
+                if (status.didJustFinish) {
+                  console.log('[Reader] Premium audio finished');
+                  setIsSpeaking(false);
+                  setElapsedMs(0);
+                  pausedElapsedRef.current = 0;
+                  stopAmbientSound();
+                }
               }
             );
             narrationSoundRef.current = sound;
             
             sound.setOnPlaybackStatusUpdate((status) => {
-              if (!status.isLoaded) {
-                if ((status as any).error) {
-                  console.warn('[Reader] Audio playback error:', (status as any).error);
-                }
-                return;
-              }
-              
+              if (!status.isLoaded) return;
               if (status.positionMillis !== undefined) {
                 setElapsedMs(status.positionMillis);
               }
@@ -570,7 +581,11 @@ export default function ReaderScreen() {
           className="flex-1 items-center justify-center p-6"
         >
           <Text className="text-sky-900 dark:text-white text-xl mb-4 text-center font-bold">Story not found.</Text>
-          <Pressable onPress={() => router.back()} className="bg-sky-500 px-8 py-4 rounded-[24px] shadow-lg shadow-sky-200">
+          <Pressable 
+            onPress={() => router.back()} 
+            style={{ borderRadius: 24, overflow: 'hidden' }}
+            className="bg-sky-500 px-8 py-4 shadow-lg shadow-sky-200"
+          >
             <Text className="text-white font-black">Go Back</Text>
           </Pressable>
         </Animated.View>

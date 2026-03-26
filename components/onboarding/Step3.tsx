@@ -48,7 +48,7 @@ export default function Step3({ profile, toggleInterest, onNext, onBack }: Step3
                   key={item.id}
                   onPress={() => toggleInterest(item.id)}
                   activeOpacity={0.6}
-                  className={`flex-row items-center px-6 py-4 rounded-full border shadow-sm transition-all duration-300 active:scale-95 ${
+                  className={`flex-row items-center px-6 py-4 rounded-full border shadow-sm transition-all duration-300 active:scale-95 overflow-hidden ${
                     isSelected 
                       ? 'bg-sky-500 border-sky-300 dark:bg-white dark:border-white scale-105' 
                       : 'bg-white dark:bg-zinc-900/50 border-sky-50 dark:border-zinc-800 scale-100'
@@ -80,7 +80,7 @@ export default function Step3({ profile, toggleInterest, onNext, onBack }: Step3
           onPress={onNext}
           disabled={!isComplete}
           activeOpacity={0.8}
-          className={`w-full py-5 rounded-[24px] transition-all duration-300 active:scale-95 ${isComplete ? 'bg-sky-500 dark:bg-white dark:border-none scale-105' : 'bg-sky-100 dark:bg-zinc-800 scale-100'}`}
+          className={`w-full py-5 rounded-[24px] transition-all duration-300 active:scale-95 overflow-hidden ${isComplete ? 'bg-sky-500 dark:bg-white dark:border-none scale-105' : 'bg-sky-100 dark:bg-zinc-800 scale-100'}`}
         >
           <Text className={`text-center text-xl font-bold ${isComplete ? 'text-white dark:text-zinc-950' : 'text-sky-400 dark:text-zinc-600'}`}>Next</Text>
         </TouchableOpacity>

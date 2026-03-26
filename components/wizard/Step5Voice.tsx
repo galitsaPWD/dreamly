@@ -58,7 +58,7 @@ export function Step5Voice({ selected, onSelect, onNext, onBack, elevenlabsExhau
                     onSelect(voice.id);
                   }}
                   activeOpacity={(!('isFree' in voice) && elevenlabsExhausted) ? 1 : 0.7}
-                  className={`p-6 rounded-[32px] border flex-row items-center transition-all duration-300 active:scale-95 ${
+                  className={`p-6 rounded-[32px] border flex-row items-center transition-all duration-300 active:scale-95 overflow-hidden ${
                     (!('isFree' in voice) && elevenlabsExhausted)
                       ? 'bg-zinc-100 border-zinc-200 dark:bg-zinc-900/30 dark:border-zinc-800 opacity-50'
                       : isSelected 
@@ -123,7 +123,7 @@ export function Step5Voice({ selected, onSelect, onNext, onBack, elevenlabsExhau
           onPress={onNext}
           disabled={!selected}
           activeOpacity={0.8}
-          className={`w-full py-5 rounded-[24px] transition-all duration-300 active:scale-95 ${
+          className={`w-full py-5 rounded-[24px] transition-all duration-300 active:scale-95 overflow-hidden ${
             selected ? 'bg-sky-500 dark:bg-white shadow-xl shadow-sky-200 dark:shadow-none' : 'bg-sky-100 dark:bg-zinc-800'
           }`}
         >

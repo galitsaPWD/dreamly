@@ -159,11 +159,11 @@ export default function LibraryScreen() {
                   onPress={() => router.push(`/reader?storyId=${story.id}`)}
                   onLongPress={() => setDeleteTarget(story)}
                   activeOpacity={0.8}
-                  className="mb-3"
+                  className="mb-4 rounded-[24px] overflow-hidden shadow-lg shadow-sky-200/20 dark:shadow-none bg-white dark:bg-zinc-900 border border-white dark:border-white/10"
                 >
                   <LinearGradient
                     colors={getThemeColors(story, isDark)}
-                    className="p-4 rounded-[24px] border border-white dark:border-white/10 flex-row items-center shadow-lg shadow-sky-200/20 dark:shadow-none"
+                    className="p-4 flex-row items-center"
                   >
                     <View className="w-12 h-12 items-center justify-center -ml-1">
                       <Ionicons name={getIconForStory(story)} size={26} color={isDark ? "#FFFFFF" : "#0EA5E9"} />

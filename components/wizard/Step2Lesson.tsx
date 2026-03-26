@@ -56,7 +56,7 @@ export const Step2Lesson: React.FC<Step2LessonProps> = ({ onSelect, selected, on
                 key={lesson.id}
                 onPress={() => onSelect(lesson.id)}
                 activeOpacity={0.7}
-                className={`p-6 rounded-2xl border transition-all duration-300 active:scale-95 ${
+                className={`p-6 rounded-2xl border transition-all duration-300 active:scale-95 overflow-hidden ${
                   isSelected 
                     ? 'bg-sky-500 border-sky-300 dark:bg-white dark:border-white shadow-lg shadow-sky-200 dark:shadow-none' 
                     : 'bg-white border-sky-100 dark:bg-zinc-900/50 dark:border-zinc-800'
@@ -76,7 +76,7 @@ export const Step2Lesson: React.FC<Step2LessonProps> = ({ onSelect, selected, on
           <TouchableOpacity
             onPress={handleCustomSelect}
             activeOpacity={0.7}
-            className={`p-6 rounded-2xl border flex-row items-center transition-all duration-300 active:scale-95 ${
+            className={`p-6 rounded-2xl border flex-row items-center transition-all duration-300 active:scale-95 overflow-hidden ${
               isCustom 
                 ? 'bg-sky-500 border-sky-300 dark:bg-white dark:border-white shadow-lg shadow-sky-200 dark:shadow-none' 
                 : 'bg-white border-sky-100 dark:bg-zinc-900/50 dark:border-zinc-800 border-dashed'
@@ -125,7 +125,7 @@ export const Step2Lesson: React.FC<Step2LessonProps> = ({ onSelect, selected, on
           onPress={onNext}
           disabled={!isComplete}
           activeOpacity={0.8}
-          className={`w-full py-5 rounded-[24px] transition-all duration-300 active:scale-95 ${
+          className={`w-full py-5 rounded-[24px] transition-all duration-300 active:scale-95 overflow-hidden ${
             isComplete ? 'bg-sky-500 dark:bg-white shadow-xl shadow-sky-200 dark:shadow-none' : 'bg-sky-100 dark:bg-zinc-800'
           }`}
         >

@@ -194,6 +194,7 @@ const styles = StyleSheet.create({
   },
   blur: {
     borderRadius: 32,
+    overflow: 'hidden',
   },
   collapsedContent: {
     flex: 1,
@@ -228,6 +229,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(255,255,255,0.05)',
+    overflow: 'hidden',
   },
   waveformContainer: {
     flex: 1,
@@ -254,6 +256,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     borderWidth: 1,
     borderColor: 'rgba(255,255,255,0.1)',
+    overflow: 'hidden',
   },
   speedText: {
     fontSize: 11,

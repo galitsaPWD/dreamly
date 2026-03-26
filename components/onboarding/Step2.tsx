@@ -110,7 +110,7 @@ export default function Step2({ profile, updateProfile, onNext, onBack }: Step2P
             <View className="flex-1 gap-2">
               <TouchableOpacity 
                 onPress={pickImage} 
-                className="w-full bg-sky-500 dark:bg-white py-4 rounded-xl items-center justify-center active:scale-95 transition-all shadow-md"
+                className="w-full bg-sky-500 dark:bg-white py-4 rounded-xl items-center justify-center active:scale-95 transition-all shadow-md overflow-hidden"
               >
                 <Text className="text-white dark:text-zinc-900 font-bold uppercase tracking-widest">Pick & Crop Photo</Text>
               </TouchableOpacity>
@@ -127,7 +127,7 @@ export default function Step2({ profile, updateProfile, onNext, onBack }: Step2P
                 key={icon}
                 onPress={() => updateProfile({ emoji: icon })}
                 activeOpacity={0.7}
-                className={`w-14 h-14 rounded-2xl items-center justify-center border shadow-sm transition-all duration-300 active:scale-90 ${
+                className={`w-14 h-14 rounded-2xl items-center justify-center border shadow-sm transition-all duration-300 active:scale-90 overflow-hidden ${
                   profile.emoji === icon
                     ? 'bg-sky-500 border-sky-500 dark:bg-white dark:border-white shadow-sky-200 dark:shadow-none scale-110'
                     : 'bg-white border-sky-50 dark:bg-zinc-900/50 dark:border-zinc-800 scale-100'
@@ -153,7 +153,7 @@ export default function Step2({ profile, updateProfile, onNext, onBack }: Step2P
             placeholder="e.g. Liam"
             placeholderTextColor="#94A3B8"
             selectionColor="#0EA5E9"
-            className="bg-white border border-sky-100 dark:border-zinc-800 dark:bg-zinc-900/50 text-zinc-900 dark:text-white p-5 rounded-[24px] text-lg font-bold focus:border-sky-500 focus:ring-0 outline-none transition-all"
+            className="bg-white border border-sky-100 dark:border-zinc-800 dark:bg-zinc-900/50 text-zinc-900 dark:text-white p-5 rounded-[24px] text-lg font-bold focus:border-sky-500 focus:ring-0 outline-none transition-all overflow-hidden"
             style={{ outline: 'none' } as any}
           />
         </View>
@@ -186,7 +186,7 @@ export default function Step2({ profile, updateProfile, onNext, onBack }: Step2P
           onPress={onNext}
           disabled={!isComplete}
           activeOpacity={0.8}
-          className={`w-full py-5 rounded-[24px] shadow-lg transition-all duration-300 active:scale-95 ${isComplete ? 'bg-sky-500 shadow-sky-200 dark:bg-white dark:shadow-none scale-105' : 'bg-sky-100 dark:bg-zinc-800 shadow-none scale-100'}`}
+          className={`w-full py-5 rounded-[24px] shadow-lg transition-all duration-300 active:scale-95 overflow-hidden ${isComplete ? 'bg-sky-500 shadow-sky-200 dark:bg-white dark:shadow-none scale-105' : 'bg-sky-100 dark:bg-zinc-800 shadow-none scale-100'}`}
         >
           <Text className={`text-center text-xl font-bold ${isComplete ? 'text-white dark:text-zinc-950' : 'text-sky-400 dark:text-zinc-600'}`}>Next</Text>
         </TouchableOpacity>

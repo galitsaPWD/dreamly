@@ -141,7 +141,7 @@ export const Step4Review: React.FC<Step4ReviewProps> = ({ data, profile, onEdit,
         <TouchableOpacity 
           onPress={onNext}
           activeOpacity={0.8}
-          className="w-full py-5 rounded-[24px] bg-sky-500 dark:bg-white active:scale-95 transition-all shadow-xl shadow-sky-200 dark:shadow-none"
+          className="w-full py-5 rounded-[24px] bg-sky-500 dark:bg-white active:scale-95 transition-all shadow-xl shadow-sky-200 dark:shadow-none overflow-hidden"
         >
           <Text className="text-center text-xl font-black text-white dark:text-zinc-950">Create Magic</Text>
         </TouchableOpacity>

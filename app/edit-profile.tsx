@@ -123,7 +123,7 @@ export default function EditProfileScreen() {
         <View className="flex-row items-center justify-between px-8 pt-6 mb-4">
           <TouchableOpacity 
             onPress={() => router.back()}
-            className="w-12 h-12 rounded-2xl bg-sky-50 dark:bg-zinc-900 items-center justify-center active:scale-90 transition-all border border-sky-100 dark:border-zinc-800"
+            className="w-12 h-12 rounded-2xl bg-sky-50 dark:bg-zinc-900 items-center justify-center active:scale-90 transition-all border border-sky-100 dark:border-zinc-800 overflow-hidden"
           >
             <Ionicons name="close" size={24} color={isDark ? 'white' : '#0EA5E9'} />
           </TouchableOpacity>
@@ -131,7 +131,7 @@ export default function EditProfileScreen() {
           <TouchableOpacity 
             onPress={handleSave}
             disabled={!isComplete}
-            className={`px-6 py-3 rounded-2xl active:scale-95 transition-all shadow-md ${
+            className={`px-6 py-3 rounded-2xl active:scale-95 transition-all shadow-md overflow-hidden ${
               isComplete ? 'bg-sky-500' : 'bg-sky-50 dark:bg-zinc-800/50'
             }`}
           >
@@ -223,7 +223,7 @@ export default function EditProfileScreen() {
                           : (isDark ? '#111111' : '#F8FAFC'),
                         borderColor: isSelected ? item.color : (isDark ? '#27272A' : '#E2E8F0')
                       }}
-                      className="w-14 h-14 rounded-2xl items-center justify-center border-2 transition-all"
+                      className="w-14 h-14 rounded-2xl items-center justify-center border-2 transition-all overflow-hidden"
                     >
                       <Ionicons 
                         name={item.icon as any} 
@@ -238,7 +238,7 @@ export default function EditProfileScreen() {
 
             <View style={{ width: '100%', marginTop: 32 }}>
               <Text className="text-sky-600/70 dark:text-zinc-500 text-[10px] font-black uppercase tracking-[3px] mb-3 ml-2">Name of Dreamer</Text>
-              <View className="bg-sky-50/50 dark:bg-zinc-900/50 border border-sky-100 dark:border-zinc-800 rounded-[32px] p-2">
+              <View className="bg-sky-50/50 dark:bg-zinc-900/50 border border-sky-100 dark:border-zinc-800 rounded-[32px] p-2 overflow-hidden">
                 <TextInput
                   value={name}
                   onChangeText={setName}
@@ -252,36 +252,38 @@ export default function EditProfileScreen() {
 
           {/* Growth Section */}
           <Animated.View entering={FadeInDown.delay(200)} style={{ width: '100%', marginBottom: 40 }}>
-            <LinearGradient
-              colors={isDark ? ['#18181B', '#09090B'] : ['#F0F9FF', '#FFFFFF']}
-              className="p-8 rounded-[40px] border border-sky-100/50 dark:border-zinc-800/50 shadow-sm"
-            >
-              <View className="flex-row justify-between items-end mb-8">
-                <View>
-                  <Text className="text-sky-600 dark:text-sky-400 text-[10px] font-black uppercase tracking-[3px] mb-1">Growth Stage</Text>
-                  <Text className="text-zinc-900 dark:text-white text-4xl font-black tracking-tight">{age} <Text className="text-lg text-sky-500 dark:text-zinc-500">Years</Text></Text>
+            <View className="rounded-[40px] overflow-hidden shadow-sm bg-white dark:bg-zinc-900 border border-sky-100/50 dark:border-zinc-800/50">
+              <LinearGradient
+                colors={isDark ? ['#18181B', '#09090B'] : ['#F0F9FF', '#FFFFFF']}
+                className="p-8"
+              >
+                <View className="flex-row justify-between items-end mb-8">
+                  <View>
+                    <Text className="text-sky-600 dark:text-sky-400 text-[10px] font-black uppercase tracking-[3px] mb-1">Growth Stage</Text>
+                    <Text className="text-zinc-900 dark:text-white text-4xl font-black tracking-tight">{age} <Text className="text-lg text-sky-500 dark:text-zinc-500">Years</Text></Text>
+                  </View>
+                  <View className="w-12 h-12 bg-sky-500/10 dark:bg-zinc-800 rounded-2xl items-center justify-center">
+                    <Ionicons name="calendar-outline" size={24} color={isDark ? '#FFFFFF' : '#0EA5E9'} />
+                  </View>
                 </View>
-                <View className="w-12 h-12 bg-sky-500/10 dark:bg-zinc-800 rounded-2xl items-center justify-center">
-                  <Ionicons name="calendar-outline" size={24} color={isDark ? '#FFFFFF' : '#0EA5E9'} />
+                
+                <Slider
+                  style={{ width: '100%', height: 40 }}
+                  minimumValue={2}
+                  maximumValue={12}
+                  step={1}
+                  value={parseInt(age) || 5}
+                  onValueChange={(value: number) => setAge(value.toString())}
+                  minimumTrackTintColor={isDark ? '#FFFFFF' : '#0EA5E9'}
+                  maximumTrackTintColor={isDark ? '#27272A' : '#E0F2FE'}
+                  thumbTintColor={isDark ? '#FFFFFF' : '#0EA5E9'}
+                />
+                <View className="flex-row justify-between px-2 mt-2">
+                  <Text className="text-[10px] font-bold text-sky-200 dark:text-zinc-700">Toddler</Text>
+                  <Text className="text-[10px] font-bold text-sky-200 dark:text-zinc-700">Pre-teen</Text>
                 </View>
-              </View>
-              
-              <Slider
-                style={{ width: '100%', height: 40 }}
-                minimumValue={2}
-                maximumValue={12}
-                step={1}
-                value={parseInt(age) || 5}
-                onValueChange={(value: number) => setAge(value.toString())}
-                minimumTrackTintColor={isDark ? '#FFFFFF' : '#0EA5E9'}
-                maximumTrackTintColor={isDark ? '#27272A' : '#E0F2FE'}
-                thumbTintColor={isDark ? '#FFFFFF' : '#0EA5E9'}
-              />
-              <View className="flex-row justify-between px-2 mt-2">
-                <Text className="text-[10px] font-bold text-sky-200 dark:text-zinc-700">Toddler</Text>
-                <Text className="text-[10px] font-bold text-sky-200 dark:text-zinc-700">Pre-teen</Text>
-              </View>
-            </LinearGradient>
+              </LinearGradient>
+            </View>
           </Animated.View>
 
           {/* Discovery Section */}
@@ -301,7 +303,7 @@ export default function EditProfileScreen() {
                     <TouchableOpacity
                       onPress={() => toggleInterest(item.id)}
                       activeOpacity={0.7}
-                      className={`flex-row items-center px-6 py-4 rounded-[28px] border transition-all duration-300 shadow-sm ${
+                      className={`flex-row items-center px-6 py-4 rounded-[28px] border transition-all duration-300 shadow-sm overflow-hidden ${
                         isSelected 
                           ? 'bg-sky-500 border-sky-400 dark:bg-white dark:border-white shadow-sky-200' 
                           : 'bg-white dark:bg-zinc-900 border-sky-50 dark:border-zinc-800'

@@ -61,7 +61,7 @@ export const Step4Length: React.FC<Step4LengthProps> = ({ onSelect, selected, on
                 key={length.id}
                 onPress={() => onSelect(length.id)}
                 activeOpacity={0.7}
-                className={`p-5 rounded-[28px] border flex-row items-center transition-all duration-300 active:scale-95 ${
+                className={`p-5 rounded-[28px] border flex-row items-center transition-all duration-300 active:scale-95 overflow-hidden ${
                   isSelected 
                     ? 'bg-sky-500 border-sky-300 dark:bg-white dark:border-white shadow-lg shadow-sky-200 dark:shadow-none' 
                     : 'bg-white border-sky-100 dark:bg-zinc-900/50 dark:border-zinc-800'
@@ -101,7 +101,7 @@ export const Step4Length: React.FC<Step4LengthProps> = ({ onSelect, selected, on
           onPress={onNext}
           disabled={!isComplete}
           activeOpacity={0.8}
-          className={`w-full py-5 rounded-[24px] transition-all duration-300 active:scale-95 ${
+          className={`w-full py-5 rounded-[24px] transition-all duration-300 active:scale-95 overflow-hidden ${
             isComplete ? 'bg-sky-500 dark:bg-white shadow-xl shadow-sky-200 dark:shadow-none' : 'bg-sky-100 dark:bg-zinc-800'
           }`}
         >

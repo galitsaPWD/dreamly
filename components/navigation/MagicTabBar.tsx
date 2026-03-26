@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     alignItems: 'center',
     justifyContent: 'center',
+    overflow: 'hidden',
   },
   dot: {
     width: 4,

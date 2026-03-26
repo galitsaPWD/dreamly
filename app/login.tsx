@@ -229,14 +229,19 @@ export default function LoginScreen() {
                     disabled={loading}
                     className="mt-6 active:scale-95 transition-transform duration-200"
                   >
-                    <LinearGradient
-                      colors={isDark ? ['#0284C7', '#0369A1'] : ['#0EA5E9', '#38BDF8']}
-                      className="py-5 rounded-[28px] items-center justify-center shadow-xl shadow-sky-300/50 dark:shadow-none"
+                    <View 
+                      style={{ borderRadius: 28, overflow: 'hidden' }}
+                      className="shadow-xl shadow-sky-300/50 dark:shadow-none"
                     >
-                      {loading ? <ActivityIndicator color="white" /> : (
-                        <Text className="text-white text-xl font-black tracking-wide">{isSignUp ? 'Get Started' : 'Sign In'}</Text>
-                      )}
-                    </LinearGradient>
+                      <LinearGradient
+                        colors={isDark ? ['#0284C7', '#0369A1'] : ['#0EA5E9', '#38BDF8']}
+                        className="py-5 items-center justify-center"
+                      >
+                        {loading ? <ActivityIndicator color="white" /> : (
+                          <Text className="text-white text-xl font-black tracking-wide">{isSignUp ? 'Get Started' : 'Sign In'}</Text>
+                        )}
+                      </LinearGradient>
+                    </View>
                   </TouchableOpacity>
                 </View>
 

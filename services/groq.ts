@@ -25,9 +25,9 @@ export const generateStory = async (request: StoryRequest): Promise<StoryResult>
 
   // Map length to word counts (Calibrated for Short/Medium/Long identity)
   const lengths = {
-    short: { words: '400-600', time: '3 minutes', paragraphs: '3-4' },
-    medium: { words: '900-1100', time: '6 minutes', paragraphs: '7-9' },
-    long: { words: '1800-2400', time: '12 minutes', paragraphs: '15-20' },
+    short: { words: '300-450', time: '2-3 minutes', paragraphs: '3-4' },
+    medium: { words: '800-1000', time: '6-8 minutes', paragraphs: '7-9' },
+    long: { words: '1800-2600', time: '12-15 minutes', paragraphs: '15-20' },
   };
 
   const selectedLength = request.length || 'medium';
@@ -41,6 +41,12 @@ export const generateStory = async (request: StoryRequest): Promise<StoryResult>
     ? `The main character should be a NEW fictional character. Tell a classic third-person story. CRITICAL: DO NOT break the fourth wall. DO NOT address ${request.childName} directly. Do NOT say things like "Imagine yourself..." or "Listen closely, ${request.childName}". The child is just a silent listener. Start the story immediately.`
     : `${request.childName} IS the main character of the story. Write the story about ${request.childName}'s adventure! CRITICAL: Start the narrative immediately without any intro or address to ${request.childName}.`;
 
+  const lengthInstruction = selectedLength === 'short'
+    ? `DURATION: QUICK story (~3 min, ${words} words). Focus on ONE vivid, high-fidelity scene. Quality must be "Masterpiece" level—evocative and poetic. ${paragraphs} paragraphs.`
+    : selectedLength === 'long'
+    ? `DURATION: EPIC journey (~12-15 min, at least ${words} words). Quality must be "Masterpiece" level. Divide into 5 Acts of excessive sensory detail. ${paragraphs} paragraphs.`
+    : `DURATION: CLASSIC tale (~6-8 min, at least ${words} words). Quality must be "Masterpiece" level. A balanced, poetic, and highly detailed narrative pacing. ${paragraphs} paragraphs.`;
+
   const prompt = `
     Task: Write a highly personalized, immersive bedtime story for a child.
     
@@ -50,29 +56,24 @@ export const generateStory = async (request: StoryRequest): Promise<StoryResult>
     
     Story Style/Theme: ${style}
     Life Lesson: ${lesson}
-    Specific Details to include: ${request.details || 'None'}
+    Specific Details: ${request.details || 'None'}
     Main Character: ${heroInstruction}
     
     Story Requirements:
-    1. DURATION: This story must be ${time} long. YOU MUST write exactly ${paragraphs} long, detailed paragraphs.
-       - Word Count Target: At least ${words} words. 
-       - Failure to provide excessive detail will result in a failed experience. 
-    2. STRUCTURE: 
-       - For "long" stories: Divide the story into 5 distinct Acts (Introduction, Rising Action, The Calm, The Magic, The Peaceful Slumber).
-    3. STYLE: Use a "slow-burn" narrative style. Describe every sensory detail—the way the air feels, the subtle sounds of nature, the shifting colors of the light.
-    4. OPENING: Start with a specific sensory detail. No cliches.
-    5. THEME: Stay 100% within the "${style}" theme.
-    6. PERSONALIZATION: Weave in ${request.interests?.join(', ')} deeply into the world.
-    7. TONE: Lyrical, calming, and hypnotic.
-    8. ENDING: A very slow, 3-paragraph descent into total peace and sleep.
-    9. RULES: Never address the child directly. No markdown.
-    10. TITLE: A unique masterpiece title. Avoid patterns.
+    1. ${lengthInstruction}
+    2. STYLE: Lyrical, hypnotic, and "uniquely artisanal". Use a "slow-burn" narrative. Describe sensory details—the air, the subtle sounds, the shifting colors.
+    3. ANTI-GENERIC: CRITICAL: DO NOT use cliches like "Once upon a time", "Long ago", or "In a land far away". Avoid predictable plot structures. No "happily ever after" summaries.
+    4. OPENING: Start mid-action or with a profound, unusual sensory observation (e.g., the taste of a mountain breeze, the sound of a star waking up).
+    5. PERSONALIZATION: Weave in ${request.interests?.join(', ')} naturally as fundamental parts of the world, not just mentions.
+    6. ENDING: A very slow, hypnotic descent into total peace and sleep. Ensure a "fade to black" feeling.
+    7. RULES: Never address the child directly. No markdown. No headers. No lists.
+    8. TITLE: A unique masterpiece title (3-7 words). MUST AVOID generic patterns like "The Adventures of..." or "The [Magic Object] of [Name]". Think "Modern Indie Picture Book" titles.
 
     Respond in this JSON format ONLY:
     {
-      "title": "A unique, poetic, storybook-style title (3-7 words)",
-      "ambient_sound": "ocean", // MUST be exactly one of: "rain", "ocean", "forest", "fire", "magic", or "space"
-      "story": "Full story content here, no headers or markdown formatting"
+      "title": "Title here",
+      "ambient_sound": "ocean", // Choose one: rain, ocean, forest, fire, magic, space
+      "story": "Full story content here"
     }
   `;
 
