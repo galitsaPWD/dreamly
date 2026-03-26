@@ -15,7 +15,10 @@ export const StoryLoading: React.FC<StoryLoadingProps> = ({
     <View className="flex-1 items-center justify-center p-10">
       <View className="relative mb-12">
         <View className="absolute inset-0 bg-sky-400/30 dark:bg-indigo-500/20 blur-3xl rounded-full" />
-        <View className="bg-white dark:bg-zinc-900 p-8 rounded-[40px] shadow-xl border border-sky-100 dark:border-zinc-800">
+        <View 
+          style={{ borderRadius: 40, overflow: 'hidden' }}
+          className="bg-white dark:bg-zinc-900 p-8 shadow-xl border border-sky-100 dark:border-zinc-800"
+        >
           <Ionicons 
             name="sparkles" 
             size={80} 

@@ -159,7 +159,8 @@ export default function LibraryScreen() {
                   onPress={() => router.push(`/reader?storyId=${story.id}`)}
                   onLongPress={() => setDeleteTarget(story)}
                   activeOpacity={0.8}
-                  className="mb-4 rounded-[24px] overflow-hidden shadow-lg shadow-sky-200/20 dark:shadow-none bg-white dark:bg-zinc-900 border border-white dark:border-white/10"
+                  style={{ borderRadius: 24, overflow: 'hidden' }}
+                  className="mb-4 shadow-lg shadow-sky-200/20 dark:shadow-none bg-white dark:bg-zinc-900 border border-white dark:border-white/10"
                 >
                   <LinearGradient
                     colors={getThemeColors(story, isDark)}
