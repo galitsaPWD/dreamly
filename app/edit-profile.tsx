@@ -49,9 +49,9 @@ export default function EditProfileScreen() {
   const [tempUri, setTempUri] = useState<string | null>(null);
   const [showCropper, setShowCropper] = useState(false);
 
-  // Sync state when profile loads
+  // Sync state when profile loads - only if name is still empty (first load)
   useEffect(() => {
-    if (profile && !loading && !avatarUri && !name) {
+    if (profile && !loading && !name) {
       setName(profile.name || '');
       setAge(profile.age?.toString() || '5');
       setInterests(profile.interests || []);
@@ -132,10 +132,12 @@ export default function EditProfileScreen() {
             onPress={handleSave}
             disabled={!isComplete}
             className={`px-6 py-3 rounded-2xl active:scale-95 transition-all shadow-md ${
-              isComplete ? 'bg-sky-500' : 'bg-sky-100 dark:bg-zinc-800'
+              isComplete ? 'bg-sky-500' : 'bg-sky-50 dark:bg-zinc-800/50'
             }`}
           >
-            <Text className={`font-black uppercase tracking-widest text-xs ${isComplete ? 'text-white' : 'text-sky-300 dark:text-zinc-500'}`}>
+            <Text className={`font-black uppercase tracking-widest text-xs ${
+              isComplete ? 'text-white' : 'text-sky-300 dark:text-zinc-600'
+            }`}>
               Save
             </Text>
           </TouchableOpacity>

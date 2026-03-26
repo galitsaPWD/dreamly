@@ -13,8 +13,7 @@
       "backgroundColor": "#09090B"
     },
     "ios": {
-      "supportsTablet": true,
-      "newArchEnabled": true
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
@@ -26,8 +25,7 @@
       "permissions": [
         "android.permission.RECORD_AUDIO"
       ],
-      "package": "com.nicoconuty.dreamly",
-      "newArchEnabled": true
+      "package": "com.nicoconuty.dreamly"
     },
     "web": {
       "bundler": "metro",
@@ -42,7 +40,18 @@
           "photosPermission": "The app accesses your photos to let you set a profile picture for your child."
         }
       ],
-      "expo-font"
+      "expo-font",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "newArchEnabled": true
+          },
+          "ios": {
+            "newArchEnabled": true
+          }
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true
