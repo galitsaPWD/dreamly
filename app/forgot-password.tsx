@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Pressable, SafeAreaView, KeyboardAvoidingView, Platform, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, Pressable, KeyboardAvoidingView, Platform, StyleSheet, ActivityIndicator } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useColorScheme } from 'nativewind';
@@ -46,11 +47,11 @@ export default function ForgotPasswordScreen() {
   }, []);
 
   const animatedStarStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: floatValue.value * 20 }, { rotate: `${floatValue2.value * 12}deg` }],
+    transform: [{ translateY: floatValue.value * 20 }, { rotate: `${floatValue2.value * 12}deg` }] as any,
   }));
 
   const animatedCloudStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: floatValue2.value * 30 }, { translateY: floatValue.value * 10 }],
+    transform: [{ translateX: floatValue2.value * 30 }, { translateY: floatValue.value * 10 }] as any,
   }));
 
   const [isEmailFocused, setIsEmailFocused] = useState(false);

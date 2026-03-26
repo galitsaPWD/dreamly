@@ -73,21 +73,21 @@ export default function LoginScreen() {
     transform: [
       { translateY: (floatValue.value * 30) - 15 },
       { rotate: `${(floatValue2.value * 20) - 10}deg` } 
-    ],
+    ] as any,
   }));
 
   const animatedCloud1Style = useAnimatedStyle(() => ({
     transform: [
       { translateX: (floatValue2.value * 40) - 20 },
       { translateY: (floatValue.value * 40) - 20 } 
-    ],
+    ] as any,
   }));
 
   const animatedCloud2Style = useAnimatedStyle(() => ({
     transform: [
       { translateX: (floatValue.value * -50) + 25 },
       { translateY: (floatValue2.value * -30) + 15 } 
-    ],
+    ] as any,
   }));
 
   const [isEmailFocused, setIsEmailFocused] = useState(false);
@@ -136,17 +136,17 @@ export default function LoginScreen() {
         {/* Local Celestial Layer */}
         <View style={StyleSheet.absoluteFill} pointerEvents="none">
           <Animated.View 
-            style={[animatedCloud1Style, { position: 'absolute', top: '35%', right: -20, opacity: 0.3 }]}
+            style={[animatedCloud1Style, { position: 'absolute', top: '35%', right: -20, opacity: 0.3 }] as any}
           >
             <Ionicons name="cloud" size={120} color={isDark ? '#F1F5F9' : '#BAE6FD'} />
           </Animated.View>
           <Animated.View 
-            style={[animatedCloud2Style, { position: 'absolute', bottom: '20%', left: -30, opacity: 0.2 }]}
+            style={[animatedCloud2Style, { position: 'absolute', bottom: '20%', left: -30, opacity: 0.2 }] as any}
           >
             <Ionicons name="cloud" size={140} color={isDark ? '#F1F5F9' : '#BAE6FD'} />
           </Animated.View>
           <Animated.View 
-            style={[animatedStarStyle, { position: 'absolute', top: '22%', right: '15%', opacity: 0.4 }]}
+            style={[animatedStarStyle, { position: 'absolute', top: '22%', right: '15%', opacity: 0.4 }] as any}
           >
             <Ionicons name="planet" size={60} color={isDark ? '#E0E7FF' : '#38BDF8'} />
           </Animated.View>

@@ -62,13 +62,13 @@ const Particle = ({ delay, size, startX, startY, type, colorIndex, isDark }: { d
       { translateX: translateX.value },
       { scale: scale.value },
       { rotate: `${rotation.value}deg` }
-    ],
+    ] as any,
     opacity: opacity.value,
   }));
 
   if (type === 'star') {
     return (
-      <Animated.View style={[styles.particle, { left: startX, top: startY }, animatedStyle]} pointerEvents="none">
+      <Animated.View style={[styles.particle, { left: startX, top: startY }, animatedStyle] as any} pointerEvents="none">
         <Ionicons name="star" size={size} color={isDark ? '#FFFFFF' : '#0EA5E9'} />
       </Animated.View>
     );
@@ -92,8 +92,8 @@ const Particle = ({ delay, size, startX, startY, type, colorIndex, isDark }: { d
           shadowOpacity: 1,
           shadowRadius: size / 2,
         }, 
-        animatedStyle
-      ]} 
+        animatedStyle as any,
+      ] as any} 
       pointerEvents="none"
     />
   );

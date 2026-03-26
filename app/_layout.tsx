@@ -9,10 +9,6 @@ import { Platform } from 'react-native';
 import '../global.css';
 import { useColorScheme } from 'nativewind';
 
-if (Platform.OS === 'web') {
-  require('../node_modules/.cache/nativewind/global.css.web.css');
-}
-
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -117,20 +113,20 @@ function RootLayoutNav() {
   return (
     <MagicBackground>
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-        <Stack screenOptions={{ 
-          animation: 'fade',
+          <Stack screenOptions={{ 
+          animation: 'fade_from_bottom',
           animationDuration: 400,
           headerShown: false,
           contentStyle: { backgroundColor: 'transparent' }
         }}>
-          <Stack.Screen name="login" options={{ headerShown: false }} />
-          <Stack.Screen name="forgot-password" options={{ headerShown: false }} />
+          <Stack.Screen name="login" options={{ headerShown: false, animation: 'fade' }} />
+          <Stack.Screen name="forgot-password" options={{ headerShown: false, animation: 'slide_from_right' }} />
           <Stack.Screen name="reset-password" options={{ headerShown: false }} />
-          <Stack.Screen name="onboarding" options={{ headerShown: false }} />
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="wizard" options={{ headerShown: false }} />
-          <Stack.Screen name="reader" options={{ headerShown: false }} />
-          <Stack.Screen name="profile" options={{ headerShown: false }} />
+          <Stack.Screen name="onboarding" options={{ headerShown: false, animation: 'fade' }} />
+          <Stack.Screen name="(tabs)" options={{ headerShown: false, animation: 'fade' }} />
+          <Stack.Screen name="wizard" options={{ headerShown: false, animation: 'slide_from_bottom', presentation: 'fullScreenModal' }} />
+          <Stack.Screen name="reader" options={{ headerShown: false, animation: 'fade' }} />
+          <Stack.Screen name="profile" options={{ headerShown: false, animation: 'slide_from_right' }} />
           <Stack.Screen name="edit-profile" options={{ headerShown: false, presentation: 'modal' }} />
           <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
         </Stack>

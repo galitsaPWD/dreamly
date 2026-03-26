@@ -61,10 +61,10 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
       setImageSize({ width, height });
 
       // Calculate display dimensions
-      const containerWidth = SCREEN_WIDTH * 0.9;
-      const ratio = width / height;
-      const dWidth = containerWidth;
-      const dHeight = containerWidth / ratio;
+      // Ensure the image covers the crop area exactly at scale=1
+      const scaleToFit = Math.max(CROP_SIZE / width, CROP_SIZE / height);
+      const dWidth = width * scaleToFit * 1.05; // 5% buffer padding
+      const dHeight = height * scaleToFit * 1.05;
       setDisplaySize({ width: dWidth, height: dHeight });
       
       // ONLY reset position on first load of this specific URI
@@ -101,15 +101,21 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
       const originX = (imageSize.width / 2) - (cropSizeInImagePixels / 2) - (currentX * scaleFactor);
       const originY = (imageSize.height / 2) - (cropSizeInImagePixels / 2) - (currentY * scaleFactor);
 
+      const clamp = (val: number, min: number, max: number) => Math.min(Math.max(val, min), max);
+      const cropW = clamp(cropSizeInImagePixels, 1, imageSize.width);
+      const cropH = clamp(cropSizeInImagePixels, 1, imageSize.height);
+      const safeX = clamp(originX, 0, imageSize.width - cropW);
+      const safeY = clamp(originY, 0, imageSize.height - cropH);
+
       const result = await manipulateAsync(
         imageUri,
         [
           {
             crop: {
-              originX: Math.max(0, originX),
-              originY: Math.max(0, originY),
-              width: Math.min(cropSizeInImagePixels, imageSize.width - originX),
-              height: Math.min(cropSizeInImagePixels, imageSize.height - originY),
+              originX: safeX,
+              originY: safeY,
+              width: cropW,
+              height: cropH,
             },
           },
           { resize: { width: 512, height: 512 } }
@@ -171,26 +177,24 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
         </View>
 
         <View style={styles.footer}>
-          {Platform.OS === 'web' && (
-            <View style={styles.sliderContainer}>
-              <Ionicons name="remove" size={20} color="#94A3B8" />
-              <Slider
-                style={styles.slider}
-                minimumValue={0.5}
-                maximumValue={3}
-                value={1}
-                onValueChange={(val) => {
-                  setCurrentScale(val);
-                }}
-                minimumTrackTintColor="#0EA5E9"
-                maximumTrackTintColor="#334155"
-                thumbTintColor="#0EA5E9"
-              />
-              <Ionicons name="add" size={20} color="#94A3B8" />
-            </View>
-          )}
+          <View style={styles.sliderContainer}>
+            <Ionicons name="remove" size={20} color="#94A3B8" />
+            <Slider
+              style={styles.slider}
+              minimumValue={0.5}
+              maximumValue={3}
+              value={1}
+              onValueChange={(val: number) => {
+                setCurrentScale(val);
+              }}
+              minimumTrackTintColor="#0EA5E9"
+              maximumTrackTintColor="#334155"
+              thumbTintColor="#0EA5E9"
+            />
+            <Ionicons name="add" size={20} color="#94A3B8" />
+          </View>
           <Text style={styles.hint}>
-            Drag to position {Platform.OS === 'web' ? '• Slide to zoom' : ''}
+            Drag to position • Slide to zoom
           </Text>
         </View>
       </View>

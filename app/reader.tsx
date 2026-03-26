@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
-import { View, Text, Pressable, SafeAreaView, ScrollView, ActivityIndicator, LayoutChangeEvent } from 'react-native';
+import { View, Text, Pressable, ScrollView, ActivityIndicator, LayoutChangeEvent } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useColorScheme } from 'nativewind';
@@ -318,8 +319,8 @@ export default function ReaderScreen() {
           
           sound.setOnPlaybackStatusUpdate((status) => {
             if (!status.isLoaded) {
-              if (status.error) {
-                console.warn('[Reader] Audio playback error during hot-swap:', status.error);
+              if ((status as any).error) {
+                console.warn('[Reader] Audio playback error during hot-swap:', (status as any).error);
               }
               return;
             }
@@ -463,8 +464,8 @@ export default function ReaderScreen() {
             
             sound.setOnPlaybackStatusUpdate((status) => {
               if (!status.isLoaded) {
-                if (status.error) {
-                  console.warn('[Reader] Audio playback error:', status.error);
+                if ((status as any).error) {
+                  console.warn('[Reader] Audio playback error:', (status as any).error);
                 }
                 return;
               }

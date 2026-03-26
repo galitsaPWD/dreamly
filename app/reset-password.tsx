@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, Pressable, SafeAreaView, KeyboardAvoidingView, Platform, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, Pressable, KeyboardAvoidingView, Platform, StyleSheet, ActivityIndicator } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { useColorScheme } from 'nativewind';
@@ -47,7 +48,7 @@ export default function ResetPasswordScreen() {
   }, []);
 
   const animatedStarStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: floatValue.value * 20 }, { rotate: `${floatValue2.value * 12}deg` }],
+    transform: [{ translateY: floatValue.value * 20 }, { rotate: `${floatValue2.value * 12}deg` }] as any,
   }));
 
   const [isPasswordFocused, setIsPasswordFocused] = useState(false);
@@ -84,7 +85,7 @@ export default function ResetPasswordScreen() {
         className="flex-1"
       >
         <View style={StyleSheet.absoluteFillObject} pointerEvents="none">
-          <Animated.View style={[animatedStarStyle, { position: 'absolute', top: '20%', right: '10%' }]} className="opacity-20">
+          <Animated.View style={[animatedStarStyle, { position: 'absolute', top: '20%', right: '10%' }] as any} className="opacity-20">
             <Ionicons name="sparkles" size={60} color={isDark ? '#A1A1AA' : '#38BDF8'} />
           </Animated.View>
         </View>

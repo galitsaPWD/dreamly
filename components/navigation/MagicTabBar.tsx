@@ -39,6 +39,12 @@ export const MagicTabBar = ({ state, descriptors, navigation }: BottomTabBarProp
 
   const [imageError, setImageError] = React.useState(false);
 
+  React.useEffect(() => {
+    if (profile?.avatarUri) {
+      setImageError(false);
+    }
+  }, [profile?.avatarUri]);
+
   return (
     <View style={styles.container}>
       <Animated.View style={[styles.tabBar, animatedStyle]}>

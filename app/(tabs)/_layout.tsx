@@ -13,7 +13,7 @@ export default function TabLayout() {
       screenOptions={{
         headerShown: false,
         sceneStyle: { backgroundColor: 'transparent' },
-        animation: 'fade',
+        animation: 'shift',
       }}>
       <Tabs.Screen
         name="index"

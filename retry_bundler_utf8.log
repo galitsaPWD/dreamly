@@ -1,0 +1,152 @@
+﻿env: load .env
+env: export EXPO_PUBLIC_GROQ_API_KEY EXPO_PUBLIC_SUPABASE_URL EXPO_PUBLIC_SUPABASE_ANON_KEY EXPO_PUBLIC_ELEVENLABS_API_KEY EXPO_PUBLIC_HF_TOKEN
+Starting Metro Bundler
+warning: Bundler cache is empty, rebuilding (this may take a minute)
+Android Bundling failed 26126ms node_modules\expo-router\entry.js (1 module)
+node.exe : SyntaxError: node_modules\expo-router\entry.js: [BABEL] C:\Users\Del
+l\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\expo-router\entry.js
+: Cannot find module 'react-native-worklets/plugin'
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Users\Dell\AppData\Roaming\n ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (SyntaxError: no...orklets/plugin' 
+   :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+Require stack:
+- C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\@babel
+\core\lib\config\files\plugins.js
+- C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\@babel
+\core\lib\config\files\index.js
+- C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\@babel
+\core\lib\index.js
+- C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\metro-
+transform-worker\src\index.js
+- C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\react-
+native-css-interop\dist\metro\transformer.js
+- C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\metro\
+src\DeltaBundler\Worker.flow.js
+- C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\metro\
+src\DeltaBundler\Worker.js
+- C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\jest-w
+orker\build\workers\processChild.js
+
+Make sure that all the Babel plugins and presets you are using
+are defined as dependencies or devDependencies in your package.json
+file. It's possible that the missing plugin is loaded by a preset
+you are using that forgot to add the plugin to its dependencies: you
+can workaround this problem by explicitly adding the missing package
+to your top-level package.json.
+
+Error: [BABEL] C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_m
+odules\expo-router\entry.js: Cannot find module 'react-native-worklets/plugin'
+Require stack:
+- C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\@babel
+\core\lib\config\files\plugins.js
+- C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\@babel
+\core\lib\config\files\index.js
+- C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\@babel
+\core\lib\index.js
+- C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\metro-
+transform-worker\src\index.js
+- C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\react-
+native-css-interop\dist\metro\transformer.js
+- C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\metro\
+src\DeltaBundler\Worker.flow.js
+- C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\metro\
+src\DeltaBundler\Worker.js
+- C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\jest-w
+orker\build\workers\processChild.js
+
+Make sure that all the Babel plugins and presets you are using
+are defined as dependencies or devDependencies in your package.json
+file. It's possible that the missing plugin is loaded by a preset
+you are using that forgot to add the plugin to its dependencies: you
+can workaround this problem by explicitly adding the missing package
+to your top-level package.json.
+
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1421:15)
+    at resolve (node:internal/modules/helpers:163:19)
+    at tryRequireResolve (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dre
+amly\node_modules\@babel\core\lib\config\files\plugins.js:128:11)
+    at resolveStandardizedNameForRequire (C:\Users\Dell\OneDrive\Desktop\Projec
+ts\portfolio\dreamly\node_modules\@babel\core\lib\config\files\plugins.js:162:1
+9)
+    at resolveStandardizedName (C:\Users\Dell\OneDrive\Desktop\Projects\portfol
+io\dreamly\node_modules\@babel\core\lib\config\files\plugins.js:183:12)
+    at loadPlugin (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\no
+de_modules\@babel\core\lib\config\files\plugins.js:56:7)
+    at loadPlugin.next (<anonymous>)
+    at createDescriptor (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\drea
+mly\node_modules\@babel\core\lib\config\config-descriptors.js:140:16)
+    at createDescriptor.next (<anonymous>)
+    at evaluateSync (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\
+node_modules\gensync\index.js:251:28)
+    at C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\g
+ensync\index.js:31:34
+    at Array.map (<anonymous>)
+    at gensync.sync (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\
+node_modules\gensync\index.js:31:22)
+    at gensync.all (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\n
+ode_modules\gensync\index.js:210:24)
+    at Generator.next (<anonymous>)
+    at createDescriptors (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dre
+amly\node_modules\@babel\core\lib\config\config-descriptors.js:102:41)
+    at createDescriptors.next (<anonymous>)
+    at createPluginDescriptors (C:\Users\Dell\OneDrive\Desktop\Projects\portfol
+io\dreamly\node_modules\@babel\core\lib\config\config-descriptors.js:99:17)
+    at createPluginDescriptors.next (<anonymous>)
+    at C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\@
+babel\core\lib\gensync-utils\functional.js:22:27
+    at Generator.next (<anonymous>)
+    at mergeChainOpts (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreaml
+y\node_modules\@babel\core\lib\config\config-chain.js:349:34)
+    at mergeChainOpts.next (<anonymous>)
+    at chainWalker (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\n
+ode_modules\@babel\core\lib\config\config-chain.js:316:14)
+    at chainWalker.next (<anonymous>)
+    at buildPresetChain (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\drea
+mly\node_modules\@babel\core\lib\config\config-chain.js:33:24)
+    at buildPresetChain.next (<anonymous>)
+    at loadPresetDescriptor (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\
+dreamly\node_modules\@babel\core\lib\config\full.js:295:53)
+    at loadPresetDescriptor.next (<anonymous>)
+    at recursePresetDescriptors (C:\Users\Dell\OneDrive\Desktop\Projects\portfo
+lio\dreamly\node_modules\@babel\core\lib\config\full.js:77:31)
+    at recursePresetDescriptors.next (<anonymous>)
+    at C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_modules\@
+babel\core\lib\config\full.js:156:21
+    at Generator.next (<anonymous>)
+    at loadFullConfig (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreaml
+y\node_modules\@babel\core\lib\config\full.js:113:5)
+    at loadFullConfig.next (<anonymous>)
+    at transform (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\nod
+e_modules\@babel\core\lib\transform.js:20:44)
+    at transform.next (<anonymous>)
+    at evaluateSync (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\
+node_modules\gensync\index.js:251:28)
+    at sync (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\node_mod
+ules\gensync\index.js:89:14)
+    at stopHiding - secret - don't use this - v1 (C:\Users\Dell\OneDrive\Deskto
+p\Projects\portfolio\dreamly\node_modules\@babel\core\lib\errors\rewrite-stack-
+trace.js:47:12)
+    at Object.transformSync (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\
+dreamly\node_modules\@babel\core\lib\transform.js:40:76)
+    at parseWithBabel (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreaml
+y\node_modules\@expo\metro-config\build\transformSync.js:65:18)
+    at transformSync (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly
+\node_modules\@expo\metro-config\build\transformSync.js:54:12)
+    at Object.transform (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\drea
+mly\node_modules\@expo\metro-config\build\babel-transformer.js:115:58)
+    at transformJSWithBabel (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\
+dreamly\node_modules\@expo\metro-config\build\transform-worker\metro-transform-
+worker.js:440:47)
+    at Object.transform (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\drea
+mly\node_modules\@expo\metro-config\build\transform-worker\metro-transform-work
+er.js:549:12)
+    at transform (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly\nod
+e_modules\@expo\metro-config\build\transform-worker\transform-worker.js:117:23)
+    at Object.transform (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\drea
+mly\node_modules\react-native-css-interop\dist\metro\transformer.js:15:16)
+    at transformFile (C:\Users\Dell\OneDrive\Desktop\Projects\portfolio\dreamly
+\node_modules\metro\src\DeltaBundler\Worker.flow.js:54:36)

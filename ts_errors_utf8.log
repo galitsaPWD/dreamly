@@ -1,0 +1,18 @@
+﻿app/(tabs)/index.tsx(41,42): error TS1323: Dynamic imports are only supported when the '--module' flag is set to 'es2020', 'es2022', 'esnext', 'commonjs', 'amd', 'system', 'umd', 'node16', or 'nodenext'.
+app/(tabs)/two.tsx(85,42): error TS1323: Dynamic imports are only supported when the '--module' flag is set to 'es2020', 'es2022', 'esnext', 'commonjs', 'amd', 'system', 'umd', 'node16', or 'nodenext'.
+app/wizard.tsx(52,7): error TS1323: Dynamic imports are only supported when the '--module' flag is set to 'es2020', 'es2022', 'esnext', 'commonjs', 'amd', 'system', 'umd', 'node16', or 'nodenext'.
+app/wizard.tsx(82,39): error TS1323: Dynamic imports are only supported when the '--module' flag is set to 'es2020', 'es2022', 'esnext', 'commonjs', 'amd', 'system', 'umd', 'node16', or 'nodenext'.
+app/wizard.tsx(83,48): error TS1323: Dynamic imports are only supported when the '--module' flag is set to 'es2020', 'es2022', 'esnext', 'commonjs', 'amd', 'system', 'umd', 'node16', or 'nodenext'.
+app/wizard.tsx(84,46): error TS1323: Dynamic imports are only supported when the '--module' flag is set to 'es2020', 'es2022', 'esnext', 'commonjs', 'amd', 'system', 'umd', 'node16', or 'nodenext'.
+components/Themed.tsx(24,32): error TS2538: Type 'null' cannot be used as an index type.
+components/Themed.tsx(24,32): error TS2538: Type 'undefined' cannot be used as an index type.
+components/Themed.tsx(29,19): error TS2538: Type 'null' cannot be used as an index type.
+components/Themed.tsx(29,19): error TS2538: Type 'undefined' cannot be used as an index type.
+components/useColorScheme.ts(5,10): error TS2367: This comparison appears to be unintentional because the types 'ColorSchemeName' and '"unspecified"' have no overlap.
+hooks/useAuth.ts(2,48): error TS2307: Cannot find module '@supabase/supabase-js' or its corresponding type declarations.
+hooks/useOnboarding.ts(30,42): error TS1323: Dynamic imports are only supported when the '--module' flag is set to 'es2020', 'es2022', 'esnext', 'commonjs', 'amd', 'system', 'umd', 'node16', or 'nodenext'.
+services/elevenlabs.ts(1,29): error TS2307: Cannot find module 'expo-file-system/legacy' or its corresponding type declarations.
+services/supabase.ts(2,30): error TS2307: Cannot find module '@supabase/supabase-js' or its corresponding type declarations.
+services/supabase.ts(32,22): error TS7006: Parameter 'name' implicitly has an 'any' type.
+services/supabase.ts(32,28): error TS7006: Parameter 'acquireTimeout' implicitly has an 'any' type.
+services/supabase.ts(32,44): error TS7006: Parameter 'fn' implicitly has an 'any' type.
