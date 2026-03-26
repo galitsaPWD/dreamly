@@ -42,7 +42,6 @@
     "react-native-screens": "~4.4.0",
     "react-native-url-polyfill": "^2.0.0",
     "react-native-web": "~0.19.13",
-    "react-native-worklets": "0.6.1",
     "tailwindcss": "^3.4.19",
     "uuid": "^13.0.0",
     "ws": "^8.19.0"
@@ -50,9 +49,6 @@
   "devDependencies": {
     "@types/react": "~18.3.1",
     "typescript": "~5.3.3"
-  },
-  "overrides": {
-    "react-native-worklets": "0.6.1"
   },
   "private": true
 }
