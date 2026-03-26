@@ -2,6 +2,7 @@
   "expo": {
     "name": "Dreamly",
     "slug": "dreamly",
+    "owner": "wanaaaas-organization",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
