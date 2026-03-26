@@ -14,21 +14,21 @@ const LENGTHS = [
   { 
     id: 'short' as const, 
     name: 'Quick Dream', 
-    duration: '~3 min read',
+    duration: '~3 min',
     icon: 'moon',
     description: 'A short, sweet story to drift off quickly'
   },
   { 
     id: 'medium' as const, 
     name: 'Classic Tale', 
-    duration: '~5 min read',
+    duration: '~6 min',
     icon: 'book',
     description: 'The perfect bedtime story length'
   },
   { 
     id: 'long' as const, 
     name: 'Epic Journey', 
-    duration: '~10 min read',
+    duration: '~12 min',
     icon: 'planet',
     description: 'A longer adventure for restless nights'
   },

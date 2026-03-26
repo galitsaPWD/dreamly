@@ -23,15 +23,15 @@ export const generateStory = async (request: StoryRequest): Promise<StoryResult>
     throw new Error('Groq API key is missing. Please add EXPO_PUBLIC_GROQ_API_KEY to your .env file.');
   }
 
-  // Map length to word counts (Aggressive targets to force AI depth)
+  // Map length to word counts (Calibrated for Short/Medium/Long identity)
   const lengths = {
-    short: { words: '700-900', time: '5 minutes' },
-    medium: { words: '1500-1800', time: '10 minutes' },
-    long: { words: '3000-3500', time: '20 minutes' },
+    short: { words: '400-600', time: '3 minutes', paragraphs: '3-4' },
+    medium: { words: '900-1100', time: '6 minutes', paragraphs: '7-9' },
+    long: { words: '1800-2400', time: '12 minutes', paragraphs: '15-20' },
   };
 
   const selectedLength = request.length || 'medium';
-  const { words, time } = lengths[selectedLength];
+  const { words, time, paragraphs } = lengths[selectedLength];
 
   // Parse custom values (custom:user_text → user_text)
   const style = request.style.startsWith('custom:') ? request.style.slice(7) : request.style;
@@ -54,12 +54,11 @@ export const generateStory = async (request: StoryRequest): Promise<StoryResult>
     Main Character: ${heroInstruction}
     
     Story Requirements:
-    1. EXTREME LENGTH: This is a 10-20 minute bedtime experience. You MUST write a very long, detailed narrative.
-       - Target Word Count: At least ${words} words. 
+    1. DURATION: This story must be ${time} long. YOU MUST write exactly ${paragraphs} long, detailed paragraphs.
+       - Word Count Target: At least ${words} words. 
        - Failure to provide excessive detail will result in a failed experience. 
     2. STRUCTURE: 
-       - For "long" stories: You MUST write exactly 15-20 long, descriptive paragraphs. Divide the story into 5 distinct Acts (Introduction, Rising Action, The Calm, The Magic, The Peaceful Slumber).
-       - For "medium" stories: Write 8-10 long paragraphs.
+       - For "long" stories: Divide the story into 5 distinct Acts (Introduction, Rising Action, The Calm, The Magic, The Peaceful Slumber).
     3. STYLE: Use a "slow-burn" narrative style. Describe every sensory detail—the way the air feels, the subtle sounds of nature, the shifting colors of the light.
     4. OPENING: Start with a specific sensory detail. No cliches.
     5. THEME: Stay 100% within the "${style}" theme.
