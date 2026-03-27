@@ -57,7 +57,7 @@ export default function ReaderScreen() {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isPlayerExpanded, setIsPlayerExpanded] = useState(false);
   const [voiceId, setVoiceId] = useState<string | undefined>();
-  const [speed, setSpeed] = useState(1.0);
+  const [speed, setSpeed] = useState(0.85);
   const [elapsedMs, setElapsedMs] = useState(0);
   const [activeParagraph, setActiveParagraph] = useState(-1);
   const [userScrolled, setUserScrolled] = useState(false);

@@ -27,24 +27,49 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
   const lastPosition = useRef({ x: 0, y: 0 });
   const loadedUri = useRef<string | null>(null);
 
+  const initialDistance = useRef<number | null>(null);
+  const initialScale = useRef<number>(1);
+
   const panResponder = useRef(
     PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onMoveShouldSetPanResponder: () => true,
-      onPanResponderGrant: () => {
-        // Just keep track of where we are
+      onPanResponderGrant: (evt) => {
+        if (evt.nativeEvent.touches.length === 2) {
+          const { touches } = evt.nativeEvent;
+          const dist = Math.sqrt(
+            Math.pow(touches[0].pageX - touches[1].pageX, 2) +
+            Math.pow(touches[0].pageY - touches[1].pageY, 2)
+          );
+          initialDistance.current = dist;
+          initialScale.current = currentScale;
+        }
       },
       onPanResponderMove: (evt, gestureState) => {
-        setPosition({
-          x: lastPosition.current.x + gestureState.dx,
-          y: lastPosition.current.y + gestureState.dy
-        });
+        if (evt.nativeEvent.touches.length === 2 && initialDistance.current !== null) {
+          const { touches } = evt.nativeEvent;
+          const dist = Math.sqrt(
+            Math.pow(touches[0].pageX - touches[1].pageX, 2) +
+            Math.pow(touches[0].pageY - touches[1].pageY, 2)
+          );
+          const newScale = (dist / initialDistance.current) * initialScale.current;
+          const clampedScale = Math.min(Math.max(newScale, 0.5), 5); // 0.5x to 5x
+          setCurrentScale(clampedScale);
+        } else if (evt.nativeEvent.touches.length === 1) {
+          setPosition({
+            x: lastPosition.current.x + gestureState.dx,
+            y: lastPosition.current.y + gestureState.dy
+          });
+        }
       },
       onPanResponderRelease: (evt, gestureState) => {
-        lastPosition.current = {
-          x: lastPosition.current.x + gestureState.dx,
-          y: lastPosition.current.y + gestureState.dy
-        };
+        if (evt.nativeEvent.touches.length <= 1) {
+          lastPosition.current = {
+            x: lastPosition.current.x + gestureState.dx,
+            y: lastPosition.current.y + gestureState.dy
+          };
+        }
+        initialDistance.current = null;
       },
     })
   ).current;
@@ -70,6 +95,7 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
       // ONLY reset position on first load of this specific URI
       setPosition({ x: 0, y: 0 });
       lastPosition.current = { x: 0, y: 0 };
+      setCurrentScale(1);
     }, (error) => {
       console.error('Failed to get image size:', error);
       // Fallback: Use screen width if size detection fails
@@ -86,18 +112,8 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
     }
 
     try {
-      // Calculate crop coordinates
-      // The image is centered in 'cropArea'. The 'cutout' is also centered.
-      // Offset tells us how much the image moved RELATIVE to the center.
-      
       const scaleFactor = (imageSize.width / displaySize.width) / currentScale;
-      
       const cropSizeInImagePixels = CROP_SIZE * scaleFactor;
-      
-      // originX in pixels = (imgCenter - cropCenter - moveX) * scale
-      // Centered origin = (imageSize.width - cropSizeInImagePixels) / 2
-      const centerX = (imageSize.width - cropSizeInImagePixels) / 2;
-      const centerY = (imageSize.height - (CROP_SIZE * (imageSize.height / displaySize.height))) / 2; // This is complex, let's simplify.
       
       const currentX = position.x;
       const currentY = position.y;
@@ -181,24 +197,8 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
         </View>
 
         <View style={styles.footer}>
-          <View style={styles.sliderContainer}>
-            <Ionicons name="remove" size={20} color="#94A3B8" />
-            <Slider
-              style={styles.slider}
-              minimumValue={0.5}
-              maximumValue={3}
-              value={currentScale}
-              onValueChange={(val: number) => {
-                setCurrentScale(val);
-              }}
-              minimumTrackTintColor="#0EA5E9"
-              maximumTrackTintColor="#334155"
-              thumbTintColor="#0EA5E9"
-            />
-            <Ionicons name="add" size={20} color="#94A3B8" />
-          </View>
           <Text style={styles.hint}>
-            Drag to position • Slide to zoom
+            Pinch to zoom • Drag to position
           </Text>
         </View>
       </View>
@@ -283,24 +283,15 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   footer: {
-    padding: 20,
+    paddingBottom: 40,
+    paddingTop: 20,
     alignItems: 'center',
     backgroundColor: 'black',
-  },
-  sliderContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: '100%',
-    paddingHorizontal: 20,
-    marginBottom: 15,
-  },
-  slider: {
-    flex: 1,
-    height: 40,
-    marginHorizontal: 10,
   },
   hint: {
     color: '#94A3B8',
     fontSize: 14,
+    fontWeight: '600',
+    letterSpacing: 0.5,
   },
 });

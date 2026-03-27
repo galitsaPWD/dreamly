@@ -65,7 +65,7 @@ export const AudioPlayerBar: React.FC<AudioPlayerBarProps> = ({
   const activeColor = isDark ? '#818CF8' : '#0EA5E9';
   const inactiveBarColor = isDark ? 'rgba(113, 113, 122, 0.25)' : 'rgba(148, 163, 184, 0.25)';
 
-  const speeds = [1.0, 1.25, 1.5];
+  const speeds = [0.85, 1.0, 1.25, 1.5];
   const cycleSpeed = () => {
     const currentIdx = speeds.indexOf(speed);
     const nextIdx = (currentIdx + 1) % speeds.length;
