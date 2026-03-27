@@ -57,7 +57,7 @@ export default function ReaderScreen() {
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [isPlayerExpanded, setIsPlayerExpanded] = useState(false);
   const [voiceId, setVoiceId] = useState<string | undefined>();
-  const [speed, setSpeed] = useState(0.85);
+  const [speed, setSpeed] = useState(1.0);
   const [elapsedMs, setElapsedMs] = useState(0);
   const [activeParagraph, setActiveParagraph] = useState(-1);
   const [userScrolled, setUserScrolled] = useState(false);
@@ -447,7 +447,17 @@ export default function ReaderScreen() {
       setIsPlayerExpanded(true);
       setUserScrolled(false);
       
-      await startAmbientSound();
+      // NEW: State to track if we've successfully started a voice
+      let voiceStarted = false;
+      
+      // Safety timeout: If no voice starts in 6s, fallback to System TTS
+      const voiceTimeout = setTimeout(() => {
+        if (!voiceStarted && isSpeaking) {
+          console.log('[Reader] Narration load timeout, falling back to System TTS');
+          setIsRepairing(false);
+          startTtsFallback();
+        }
+      }, 6000);
 
       // PRIORITY 1: ElevenLabs Local/Cloud Audio
       if (story?.audioUri) {
@@ -462,25 +472,20 @@ export default function ReaderScreen() {
                 rate: speed, 
                 shouldCorrectPitch: true,
                 progressUpdateIntervalMillis: 100
-              },
-              (status) => {
-                if (!status.isLoaded) {
-                  if ((status as any).error) console.warn('[Reader] Audio status error:', (status as any).error);
-                  return;
-                }
-                if (status.didJustFinish) {
-                  console.log('[Reader] Premium audio finished');
-                  setIsSpeaking(false);
-                  setElapsedMs(0);
-                  pausedElapsedRef.current = 0;
-                  stopAmbientSound();
-                }
               }
             );
             narrationSoundRef.current = sound;
             
             sound.setOnPlaybackStatusUpdate((status) => {
               if (!status.isLoaded) return;
+              
+              // Detect when it ACTUALLY starts playing to trigger ambient sound
+              if (status.isPlaying && !voiceStarted) {
+                voiceStarted = true;
+                clearTimeout(voiceTimeout);
+                startAmbientSound();
+              }
+
               if (status.positionMillis !== undefined) {
                 setElapsedMs(status.positionMillis);
               }
@@ -499,17 +504,17 @@ export default function ReaderScreen() {
           await narrationSoundRef.current.setPositionAsync(pausedElapsedRef.current);
           await narrationSoundRef.current.setRateAsync(speed, true);
           await narrationSoundRef.current.playAsync();
-          console.log('[Reader] ElevenLabs playback started');
-        } catch (e: any) {
-          console.warn('[Reader] ElevenLabs playback failed, falling back to System TTS:', e.message || e);
+          
+          // startAmbientSound is now called inside the status update `isPlaying` check
+        } catch (err) {
+          console.error('[Reader] ElevenLabs playback failed:', err);
+          clearTimeout(voiceTimeout);
           startTtsFallback();
         }
-      } else if (isRepairing) {
-        // If we are currently generating, wait a bit or use fallback
-        startTtsFallback();
       } else {
-        // PRIORITY 2: Expo Speech Fallback
+        clearTimeout(voiceTimeout);
         startTtsFallback();
+        startAmbientSound(); // System TTS usually starts very fast
       }
     }
   }, [isSpeaking, story, elapsedMs, speed, stopNarration, startAmbientSound, stopAmbientSound, isRepairing]);

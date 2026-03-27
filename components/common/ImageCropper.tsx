@@ -72,6 +72,10 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
       lastPosition.current = { x: 0, y: 0 };
     }, (error) => {
       console.error('Failed to get image size:', error);
+      // Fallback: Use screen width if size detection fails
+      const fallbackSize = SCREEN_WIDTH;
+      setImageSize({ width: fallbackSize, height: fallbackSize });
+      setDisplaySize({ width: SCREEN_WIDTH, height: SCREEN_WIDTH });
     });
   };
 
@@ -183,7 +187,7 @@ export const ImageCropper: React.FC<ImageCropperProps> = ({
               style={styles.slider}
               minimumValue={0.5}
               maximumValue={3}
-              value={1}
+              value={currentScale}
               onValueChange={(val: number) => {
                 setCurrentScale(val);
               }}

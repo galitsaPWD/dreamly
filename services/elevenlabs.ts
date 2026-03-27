@@ -52,7 +52,7 @@ export const generateAndSaveAudio = async (storyId: string, text: string, voiceI
       },
       body: JSON.stringify({
         text,
-        model_id: 'eleven_multilingual_v2', // Upgraded to v2 for better compatibility
+        model_id: 'eleven_flash_v2_5', // High-speed model for near-instant narration
         voice_settings: {
           stability: 0.5,
           similarity_boost: 0.75,
